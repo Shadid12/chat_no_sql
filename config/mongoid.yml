@@ -1,0 +1,21 @@
+development:
+  clients:
+    default:
+      database: shadid
+      hosts:
+        - ds149268.mlab.com:49268
+      options:
+        user: 'root'
+        password: 'toor'
+  options:
+
+production:
+  clients:
+    default:
+      database: shadid
+      hosts:
+        - ds149268.mlab.com:49268
+      options:
+        user: 'root'
+        password: 'toor'
+  options:
