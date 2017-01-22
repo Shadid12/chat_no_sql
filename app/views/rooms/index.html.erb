@@ -17,6 +17,8 @@
         <td><%= link_to 'Show', room %></td>
         <td><%= link_to 'Edit', edit_room_path(room) %></td>
         <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Join', join_room_path(room.id), method: "post" %></td>
+        <td><%= link_to 'leave', leave_room_path(room.id), method: "post" %></td>
       </tr>
     <% end %>
   </tbody>

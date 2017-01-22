@@ -26,6 +26,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     @room.user = current_user
+    @room.members = [current_user.id]
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
@@ -66,7 +67,32 @@ class RoomsController < ApplicationController
       end
     end
   end
-
+  
+  
+  # join a room 
+  def join
+    @room = Room.find(params[:id])
+    if @room.members.include? current_user.id
+      redirect_to @room, notice: 'you are already in the room' 
+    else
+      @room.members.push(current_user.id)
+      if @room.save
+        redirect_to @room, notice: 'you have successfully joined the room'
+      end
+    end
+  end
+  
+  # leave room 
+  def leave
+      @room = Room.find(params[:id])
+      if @room.members.include? current_user.id
+        @room.members.delete_at(@room.members.index(current_user.id))
+        if @room.save
+          redirect_to root_path, notice: 'you have left the room'
+        end
+      end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
