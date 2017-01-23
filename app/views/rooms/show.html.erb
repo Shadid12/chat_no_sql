@@ -5,7 +5,7 @@
   <%= @room.name %>
 </p>
 
-<p id="h"></p>
+<p id="messages-table"></p>
 
 <!--form-->
 <input type="text" name="message" id="message">
@@ -28,16 +28,16 @@ $(document).on('turbolinks:load', function(){
       'room': room
     }
     
-    // $.ajax({
-    // url : "/messages",
-    // type: "POST",
-    // data : d,
-    // success: function(data, textStatus, jqXHR)
-    // {
+    $.ajax({
+    url : "/messages",
+    type: "POST",
+    data : d,
+    success: function(data, textStatus, jqXHR)
+    {
       
-    // }
-    // });
-    $('#h').append('<div><b> <%= current_user.username %> </b> :' + body + '</div>');
+    }
+    });
+    // $('#h').append('<div><b> <%= current_user.username %> </b> :' + body + '</div>');
     $("#message").val(" ");
   });
 });
