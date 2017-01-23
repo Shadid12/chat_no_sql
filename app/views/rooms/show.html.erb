@@ -5,5 +5,40 @@
   <%= @room.name %>
 </p>
 
+<p id="h"></p>
+
+<!--form-->
+<input type="text" name="message" id="message">
+<div>
+  <button id="send">Send</button>
+</div>
+
+
+
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
+
+<script>
+$(document).on('turbolinks:load', function(){
+  $("#send").click(function(){
+    var body = $("#message").val();
+    var room = "<%= @room.id %>"
+    d = {
+      'body' : body,
+      'room': room
+    }
+    
+    // $.ajax({
+    // url : "/messages",
+    // type: "POST",
+    // data : d,
+    // success: function(data, textStatus, jqXHR)
+    // {
+      
+    // }
+    // });
+    $('#h').append('<div><b> <%= current_user.username %> </b> :' + body + '</div>');
+    $("#message").val(" ");
+  });
+});
+</script>

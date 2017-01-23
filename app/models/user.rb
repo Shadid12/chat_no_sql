@@ -23,5 +23,5 @@ class User
   field :last_sign_in_ip,    type: String
   
   has_many :rooms
-  
+  has_many :messages
 end

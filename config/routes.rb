@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post :leave
     end
   end
+  resources :messages, only: [:new, :create]
   devise_for :users
   root to: 'rooms#index'
   
